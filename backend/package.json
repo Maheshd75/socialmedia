@@ -25,9 +25,5 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-  },
-  "overrides": {
-  "serialize-error-cjs": "0.2.0"
-}
-
+  }
 }
