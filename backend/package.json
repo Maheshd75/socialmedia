@@ -20,7 +20,8 @@
     "inngest": "^3.41.0",
     "mongoose": "^8.18.2",
     "multer": "^2.0.2",
-    "nodemailer": "^7.0.6"
+    "nodemailer": "^7.0.6",
+    "serialize-error-cjs": "^0.2.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
