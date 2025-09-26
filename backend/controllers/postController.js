@@ -1,5 +1,6 @@
 import fs from 'fs'
-import imageKit from 'imagekit'
+import imagekit from '../configs/imageKit.js';
+import Post from '../models/Post.js';
 export const addPost = async (req, res) => {
     try {
         const {user} = req.auth()

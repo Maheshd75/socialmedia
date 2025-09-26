@@ -17,7 +17,7 @@ const PostCard = ({post}) => {
 
     const handleLike = async () => {
         try {
-            const {data} = await api.post(`/api/post/like`,{postId:post._id},
+            const {data} = await api.post('/api/post/like',{postId:post._id},
                 {headers:{Authorization:`Bearer ${await getToken()}`}})
                 if(data.success){
                     toast.success(data.message)
