@@ -21,7 +21,7 @@ const Discover = () => {
       setUsers([])
       setLoading(true)
       const {data} = await api.post('/api/user/discover',{input},{
-        headers:{Authorization:`Bearer ${await getToken}`}
+        headers:{Authorization:`Bearer ${await getToken()}`}
       })
       data.success ? setUsers(data.users) : toast.error(data.message)
       setLoading(false)

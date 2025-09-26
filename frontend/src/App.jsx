@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux'
 import { fetchUser } from './features/user/userSlice'
 import { fetchConnections } from './features/connections/connectionsSlice'
 import { addMessage } from './features/messages/messagesSlice'
-import toast from 'react-hot-toast'
+import toast, { Toaster } from 'react-hot-toast'
 import Notifications from './components/Notifications'
 const App = () => {
   const {user} = useUser()
@@ -64,6 +64,7 @@ const App = () => {
   },[user,dispatch])
   return (
     <>
+     <Toaster/>
     <Routes>
       <Route path='/' element={ !user ? <Login/> : <Layout/>}>
        <Route index element={<Feed/>}/>
