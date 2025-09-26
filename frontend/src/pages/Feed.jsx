@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { assets, dummyPostsData } from '../assets/assets'
+import { assets } from '../assets/assets'
 import Loading from '../components/Loading'
 import StoriesBar from '../components/StoriesBar'
 import PostCard from '../components/PostCard'
 import { useAuth } from '@clerk/clerk-react'
 import api from '../api/axios'
 import toast from 'react-hot-toast'
+import RecentMessages from '../components/RecentMessages'
 
 const Feed = () => {
 
@@ -35,7 +36,7 @@ const Feed = () => {
     fetchFeeds()
   },[])
   return !loading ? (
-    <div className='h-full overflow-y-scroll no-scrollbar py-10 xl:pr-5 flexitems-start justify-center xl:gap-8'>
+    <div className='flex h-full overflow-y-scroll no-scrollbar py-10 xl:pr-5 flexitems-start justify-center xl:gap-8'>
       <div>
         <StoriesBar/>
         <div className='p-4 space-y-6'>
@@ -54,6 +55,7 @@ const Feed = () => {
           <p className='text-slate-400'>Supercharge your marketing with a powerful,easy-to-use platform built for results.</p>
 
         </div>
+        <RecentMessages/>
       </div>
     </div>
   ) : <Loading/>

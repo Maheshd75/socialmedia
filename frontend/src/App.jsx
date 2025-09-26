@@ -25,6 +25,7 @@ const App = () => {
   const dispatch = useDispatch()
 
   useEffect(()=>{
+    
     const fetchData = async () =>{
       if(user){
         const token = await getToken()
@@ -64,7 +65,7 @@ const App = () => {
   return (
     <>
     <Routes>
-      <Route path='/' element={ !user? <Login/> : <Layout/>}>
+      <Route path='/' element={ !user ? <Login/> : <Layout/>}>
        <Route index element={<Feed/>}/>
        <Route path='messages' element={<Messages/>}/>
        <Route path='messages/:userId' element={<ChatBox/>}/>

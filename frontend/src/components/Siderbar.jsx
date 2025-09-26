@@ -4,6 +4,7 @@ import Menuitems from './Menuitems'
 import { CirclePlus, LogOut } from 'lucide-react'
 import { useClerk, UserButton } from '@clerk/clerk-react'
 import { useSelector } from 'react-redux'
+import { assets } from '../assets/assets'
 
 const Siderbar = ({sidebarOpen, setSidebarOpen}) => {
     const user = useSelector((state)=>state.user.value)
