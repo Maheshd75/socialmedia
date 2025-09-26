@@ -23,6 +23,7 @@ const Connections = () => {
     {label:'Pending', value:pendingConnections,icon:UserRoundPen},
     {label:'Connections', value:connections,icon:UserPlus},
   ]
+  
 
   const handleUnfollow = async (userId) => {
     try {
