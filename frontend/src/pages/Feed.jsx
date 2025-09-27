@@ -16,16 +16,17 @@ const Feed = () => {
   const fetchFeeds = async () => {
     try {
       setLoading(true)
-      const {data} = await api.get('/api/post/feed',{headers:{Authorization:
-        `Bearer ${await getToken()}`
-      }})
+      const {data} = await api.get('/api/post/feed',{headers:{Authorization:`Bearer ${await getToken()}`}})
       if(data.success){
+        
         setFeeds(data.posts)
       }else{
+        
         toast.error(data.message)
       }
       
     } catch (error) {
+      
       toast.error(error.message)
       
     }

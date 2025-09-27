@@ -22,6 +22,7 @@ const StoriesBar = () => {
                 headers:{Authorization:`Bearer ${token}`}
             })
             if(data.success){
+                
                 setStories(data.stories)
             }else{
                 toast(data.message)
