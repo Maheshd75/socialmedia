@@ -13,6 +13,8 @@ export const sseController = (req,res,next) => {
     res.setHeader('Access-Control-Allow-Origin','*')
 
     connections[userId] = res;
+    
+
     res.write('log:connected to SSE stream\n\n')
     req.on('close',() => {
         delete connections[userId]

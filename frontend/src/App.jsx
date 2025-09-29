@@ -44,13 +44,13 @@ const App = () => {
     if(user){
 
      const eventSource = new EventSource(import.meta.env.VITE_BASEURL + '/api/message/' + user.id);
-     console.log(eventSource)
+     
     
         eventSource.onmessage = (event)=>{
       const message = JSON.parse(event.data)
-      console.log(message)
+      
       if(pathnameRef.current === ('/messages/' + message.from_user_id._id)){
-        console.log(message)
+        
         dispatch(addMessage(message))
       }else{
         toast.custom((t)=>(
@@ -60,10 +60,7 @@ const App = () => {
       }
     
     }
-     eventSource.onerror = (err) => {
-      console.error("SSE error:", err);
-      eventSource.close();
-    };
+     
     return ()=>{
       eventSource.close()
     }

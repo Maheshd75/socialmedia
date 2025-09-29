@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'lucide-react'
 import moment from 'moment'
 import { useAuth, useUser } from '@clerk/clerk-react'
 import api from '../api/axios'
 import toast from 'react-hot-toast'
+import { Link } from 'react-router-dom'
 
 const RecentMessages = () => {
 
@@ -25,10 +25,12 @@ const RecentMessages = () => {
                     }
                     return acc;
                 },{})
+                
 
                 const sortedMessages =Object.values(groupedMessages).sort((a,b)=>
                 new Date(b.createdAt) - new Date(a.createdAt))
                 setMessages(sortedMessages)
+            
             }else{
                 toast.error(data.message)
             }
@@ -42,7 +44,7 @@ const RecentMessages = () => {
     useEffect(()=>{
         if(user){
         fetchRecentMessages()
-        setInterval(fetchRecentMessages,30000)
+        setInterval(fetchRecentMessages,300000)
         return ()=> {
             clearInterval()
         }
