@@ -42,13 +42,14 @@ const App = () => {
 
   useEffect(()=>{
     if(user){
-      
+
      const eventSource = new EventSource(import.meta.env.VITE_BASEURL + '/api/message/' + user.id);
+     console.log(eventSource)
     
         eventSource.onmessage = (event)=>{
       const message = JSON.parse(event.data)
       console.log(message)
-      if(pathnameRef.current === ('/messages/' + message.from_user_id._id)){
+      if(pathnameRef.current === ('/messages/' + message.to_user_id._id)){
         console.log(message)
         dispatch(addMessage(message))
       }else{
