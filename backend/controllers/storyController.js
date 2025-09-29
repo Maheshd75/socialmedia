@@ -9,11 +9,11 @@ export const addUserStory = async (req, res) => {
         const {content,media_type,background_color} = req.body;
         const media = req.file;
         let media_url = "";
-        if(media_type === 'image' && media_type === 'video' ){
+        if(media_type === 'image' || media_type === 'video' ){
             const fileBuffer = fs.readFileSync(media.path);
-            const response = await imagekit.uploader.upload({
+            const response = await imagekit.upload({
                 file:fileBuffer,
-                filename:media.originalname,
+                fileName:media.originalname,
             })
             media_url = response.url
         }

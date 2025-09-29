@@ -1,5 +1,5 @@
 import { useAuth } from '@clerk/clerk-react'
-import { ArrowLeft, Sparkle, TextIcon } from 'lucide-react'
+import { ArrowLeft, Sparkle, TextIcon, Upload } from 'lucide-react'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import api from '../api/axios'
@@ -63,6 +63,7 @@ const StoryModal = ({setShowModal,fetchStories}) => {
         if(media_type === 'text' && !text){
             throw new Error('Please enter some text')
         }
+        console.log(media)
 
         let formData = new FormData();
         formData.append('content',text);
@@ -105,8 +106,7 @@ const StoryModal = ({setShowModal,fetchStories}) => {
                 {
                     mode==='text' && (
                         <textarea className='bg-transparent text-white w-full h-full
-                        p-6 text-lg resize-none focus:outline-none' placeholder="What's 
-                        on your mind?" onChange={(e)=>setText(e.target.value)} value={text}/>
+                        p-6 text-lg resize-none focus:outline-none' placeholder="What's on your mind?" onChange={(e)=>setText(e.target.value)} value={text}/>
                     )
                 }
                 {
@@ -124,7 +124,7 @@ const StoryModal = ({setShowModal,fetchStories}) => {
             <div className='flex mt-4 gap-2'>
                 {
                     bgColors.map((color)=>(
-                        <button key={color} className='w-6 h-6 rounded-full ring cursor-ponter'
+                        <button key={color} className='w-6 h-6 rounded-full ring cursor-pointer'
                         style={{backgroundColor:color}} onClick={()=>setBackground(color)}/>
 
                     ))
@@ -132,10 +132,10 @@ const StoryModal = ({setShowModal,fetchStories}) => {
             </div>
             <div className='flex gap-2 mt-4'>
                 <button onClick={()=>{setMode('text'); setMedia(null); setPreviewUrl(null)}} className={`flex-1 flex items-center
-                    justify-center gap-2 p-2 rounded cursor-pointer ${mode === 'text' ? "bg-white text-black" : "nb-zinc-800"}`}>
+                    justify-center gap-2 p-2 rounded cursor-pointer ${mode === 'text' ? "bg-white text-black" : "bg-zinc-800"}`}>
                         <TextIcon size={18}/> Text
                     </button>
-                    <label className={`flex-1 flex items-center justify-center gap-2p-2 rounded cursor-pointer ${mode === 'media' ? "bg-white text-black" : "bg-zinc-800"}`}>
+                    <label className={`flex-1 flex items-center justify-center gap-2 p-2 rounded cursor-pointer ${mode === 'media' ? "bg-white text-black" : "bg-zinc-800"}`}>
                         <input onChange={handleMediaUpload} type="file" accept='image/*, video/*' className='hidden' />
                         <Upload size={18}/> Photo/Video
                     </label>
@@ -144,7 +144,7 @@ const StoryModal = ({setShowModal,fetchStories}) => {
             <button onClick={()=> toast.promise(handleCreateStory(),{
                 loading:'Saving...',
                
-            })} className='flex items-center justify-center gap-2 text-white py-3mt-4 w-full rounded bg-gradient-to-r from-indigo-500 to-purple-600
+            })} className='flex items-center justify-center gap-2 text-white py-3 mt-4 w-full rounded bg-gradient-to-r from-indigo-500 to-purple-600
             hover:from-indigo-600 hover:to-purple-700 active:scale-95 transition
             cursor-pointer'>
                 <Sparkle size={18}/> Create Story

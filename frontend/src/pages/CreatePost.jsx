@@ -46,6 +46,7 @@ const CreatePost = () => {
       }
     
     }catch(error){
+      console.log(error.message)
       throw new Error(error.message)
 
     }
@@ -98,7 +99,7 @@ const CreatePost = () => {
             {
               loading:'uploading...',
               success:<p>Post Added</p>,
-              error:<p>Post Not Added</p>,
+              error: <p>Post Not Added</p>,
             }
           )} className='text-sm bg-gradient-to-r from-indigo-500
           to-purple-600 hover:from-indigo-600 hover:to-purple-700

@@ -56,6 +56,10 @@ const App = () => {
       }
     
     }
+     eventSource.onerror = (err) => {
+      console.error("SSE error:", err);
+      eventSource.close();
+    };
     return ()=>{
       eventSource.close()
     }

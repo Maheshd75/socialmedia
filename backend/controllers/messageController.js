@@ -30,7 +30,7 @@ export const sendMessage = async (req,res) => {
             const fileBuffer = fs.readFileSync(image.path);
             const response = await imagekit.upload({
                 file:fileBuffer,
-                filename:image.originalname,
+                fileName:image.originalname,
             })
             media_url = imagekit.url({
                 path:response.filePath,
@@ -52,7 +52,7 @@ export const sendMessage = async (req,res) => {
         })
         res.json({success:true,message})
 
-        const messagewithUserData = await Message.findById(message._id).populate('from_user_id').populate('from_user_id')
+        const messagewithUserData = await Message.findById(message._id).populate('from_user_id')
         if(connections[to_user_id]){
             connections[to_user_id].write(`data: ${JSON.stringify(messagewithUserData)}\n\n`)
         }
@@ -70,7 +70,7 @@ export const getChatMessages = async (req,res) => {
                 {from_user_id:userId,to_user_id},
                 {from_user_id:to_user_id,to_user_id:userId}
             ]
-        }).sort({created_at:-1})
+        }).sort({createdAt:-1})
 
         await Message.updateMany({
             from_user_id:to_user_id,

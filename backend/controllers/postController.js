@@ -4,17 +4,18 @@ import Post from '../models/Post.js';
 import User from '../models/User.js'
 export const addPost = async (req, res) => {
     try {
-        const {user} = req.auth()
+        const {userId} = req.auth()
         const {content,post_type} = req.body;
-        const image_urls = req.files 
-        let images = [];
+        const images = req.files 
+        let image_urls = [];
+        const user = await User.findById(userId)
         if(images.length){
             image_urls = await Promise.all(
                 images.map(async(image)=>{
                     const fileBuffer = fs.readFileSync(image.path);
-                    const response = await imagekit.uploader.upload({
+                    const response = await imagekit.upload({
                         file:fileBuffer,
-                        filename:profile.originalname,
+                        fileName:image.originalname,
                         folder:"posts"
                     })
                     const url = imagekit.url({

@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const StorySchema = new mongoose.Schema({
     user:{type:String,ref:'User',required:true},
-    content:{type:String,required:true},
-    image_url:{type:String},
+    content:{type:String},
+    media_url:{type:String},
     media_type:{type:String,enum:['text','image','video']},
     views_count:[{type:String,ref:'User'}],
     background_color:{type:String},
