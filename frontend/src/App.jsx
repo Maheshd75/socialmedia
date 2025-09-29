@@ -42,11 +42,14 @@ const App = () => {
 
   useEffect(()=>{
     if(user){
+      
      const eventSource = new EventSource(import.meta.env.VITE_BASEURL + '/api/message/' + user.id);
     
         eventSource.onmessage = (event)=>{
       const message = JSON.parse(event.data)
+      console.log(message)
       if(pathnameRef.current === ('/messages/' + message.from_user_id._id)){
+        console.log(message)
         dispatch(addMessage(message))
       }else{
         toast.custom((t)=>(
